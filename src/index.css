@@ -1,0 +1,1056 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    font-family: 'Inter', sans-serif;
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    @apply text-gray-900 bg-white;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-bold;
+  }
+}
+
+@layer components {
+  .btn {
+    @apply px-6 py-3 font-medium rounded-xl transition-all duration-300 inline-flex items-center justify-center;
+  }
+  
+  .btn-primary {
+    @apply bg-primary text-white hover:bg-primary-dark focus:ring-4 focus:ring-primary/30;
+  }
+  
+  .btn-secondary {
+    @apply bg-white text-gray-900 border border-gray-300 hover:bg-gray-100 focus:ring-4 focus:ring-gray-300/30;
+  }
+  
+  .section {
+    @apply py-16 md:py-24 opacity-0 translate-y-8 transition-all duration-700;
+  }
+
+  .section.visible {
+    @apply opacity-100 translate-y-0;
+  }
+
+  .container {
+    @apply px-4 mx-auto max-w-7xl;
+  }
+
+  .card {
+    @apply bg-white rounded-2xl shadow-md transition-all duration-300;
+  }
+  
+  .card-hover {
+    @apply hover:shadow-lg hover:-translate-y-1;
+  }
+
+  .whatsapp-pulse {
+    animation: pulse 2s infinite;
+  }
+
+  /* Enhanced Button Animations */
+  .pulse-button {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .pulse-button::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+  }
+
+  .pulse-button:hover::before {
+    width: 300px;
+    height: 300px;
+  }
+
+  .pulse-button {
+    animation: buttonPulse 3s ease-in-out infinite;
+  }
+
+  .hover-lift {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .hover-lift:hover {
+    transform: translateY(-4px) scale(1.02);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  }
+
+  /* Dynamic Headline Animations - FIXED */
+  .dynamic-headline-container {
+    position: relative;
+    height: 1.5em; /* Aumentado para dar mais espaço */
+    overflow: visible; /* Mudado de hidden para visible */
+    padding-bottom: 0.2em; /* Adicionado padding inferior */
+  }
+
+  .dynamic-headline {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    font-size: 0.7em;
+    color: #00C67C;
+    font-weight: 600;
+    line-height: 1.4; /* Adicionado line-height adequado */
+    padding-bottom: 0.1em; /* Padding inferior para descendentes */
+  }
+
+  .dynamic-headline.active {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Tooltip Styles */
+  .tooltip {
+    position: absolute;
+    top: -60px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 30;
+    animation: tooltipFadeIn 0.3s ease-out;
+  }
+
+  .tooltip-content {
+    background: rgba(0, 0, 0, 0.9);
+    color: white;
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    white-space: nowrap;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  }
+
+  .tooltip-arrow {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-top: 6px solid rgba(0, 0, 0, 0.9);
+  }
+
+  /* Interactive WhatsApp Demo Styles */
+  .whatsapp-mockup {
+    background: white;
+    border-radius: 24px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    max-width: 400px;
+    margin: 0 auto 24px;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+  }
+
+  .whatsapp-header {
+    background: linear-gradient(135deg, #075E54 0%, #128C7E 100%);
+    padding: 16px 20px;
+    color: white;
+  }
+
+  .avatar-container {
+    position: relative;
+    margin-right: 12px;
+  }
+
+  .avatar {
+    width: 40px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(10px);
+  }
+
+  .online-indicator {
+    position: absolute;
+    bottom: 2px;
+    right: 2px;
+    width: 12px;
+    height: 12px;
+    background: #4CAF50;
+    border-radius: 50%;
+    border: 2px solid white;
+    animation: pulse 2s infinite;
+  }
+
+  .contact-name {
+    font-size: 16px;
+    font-weight: 600;
+    margin: 0;
+    color: white;
+  }
+
+  .contact-status {
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.8);
+    margin: 0;
+  }
+
+  .messages-area {
+    height: 400px;
+    background: linear-gradient(to bottom, #ECE5DD 0%, #E5DDD5 100%);
+    overflow-y: auto;
+    position: relative;
+  }
+
+  .messages-container {
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    min-height: 100%;
+  }
+
+  .welcome-message {
+    display: flex;
+    justify-content: flex-start;
+    margin-bottom: 8px;
+  }
+
+  .welcome-bubble {
+    background: white;
+    padding: 12px 16px;
+    border-radius: 16px;
+    border-bottom-left-radius: 4px;
+    max-width: 85%;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    animation: messageSlideIn 0.5s ease-out;
+  }
+
+  .welcome-bubble p {
+    margin: 0 0 8px 0;
+    font-size: 14px;
+    line-height: 1.4;
+    color: #333;
+  }
+
+  .welcome-bubble p:last-of-type {
+    margin-bottom: 0;
+  }
+
+  .message {
+    display: flex;
+    margin-bottom: 4px;
+  }
+
+  .user-message {
+    justify-content: flex-end;
+  }
+
+  .bot-message {
+    justify-content: flex-start;
+  }
+
+  .message-bubble {
+    max-width: 85%;
+    padding: 12px 16px;
+    border-radius: 16px;
+    position: relative;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  .user-bubble {
+    background: linear-gradient(135deg, #DCF8C6 0%, #D4F4C4 100%);
+    border-bottom-right-radius: 4px;
+  }
+
+  .bot-bubble {
+    background: white;
+    border-bottom-left-radius: 4px;
+  }
+
+  .message-text {
+    margin: 0 0 8px 0;
+    font-size: 14px;
+    line-height: 1.4;
+    color: #333;
+    white-space: pre-line;
+  }
+
+  .message-footer {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .message-time {
+    font-size: 11px;
+    color: #666;
+  }
+
+  .message-status {
+    display: flex;
+    align-items: center;
+  }
+
+  /* Typing Indicator */
+  .typing-indicator {
+    background: white;
+    padding: 16px 20px;
+    border-radius: 16px;
+    border-bottom-left-radius: 4px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    max-width: 80px;
+  }
+
+  .typing-dots {
+    display: flex;
+    gap: 4px;
+    justify-content: center;
+  }
+
+  .typing-dots span {
+    width: 8px;
+    height: 8px;
+    background: #999;
+    border-radius: 50%;
+    animation: typingDots 1.4s infinite ease-in-out;
+  }
+
+  .typing-dots span:nth-child(1) { animation-delay: -0.32s; }
+  .typing-dots span:nth-child(2) { animation-delay: -0.16s; }
+
+  /* Demo Input Styles */
+  .demo-input-container {
+    max-width: 600px;
+    margin: 0 auto 24px;
+  }
+
+  .demo-input-wrapper {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    background: white;
+    padding: 8px;
+    border-radius: 24px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    border: 2px solid transparent;
+    transition: all 0.3s ease;
+  }
+
+  .demo-input-wrapper:focus-within {
+    border-color: #00C67C;
+    box-shadow: 0 8px 32px rgba(0, 198, 124, 0.2);
+  }
+
+  .demo-input {
+    flex: 1;
+    padding: 12px 16px;
+    border: none;
+    outline: none;
+    font-size: 16px;
+    background: transparent;
+    color: #333;
+  }
+
+  .demo-input::placeholder {
+    color: #999;
+  }
+
+  .send-button {
+    background: linear-gradient(135deg, #00C67C 0%, #00A066 100%);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 16px rgba(0, 198, 124, 0.3);
+  }
+
+  .send-button:hover:not(:disabled) {
+    transform: scale(1.05);
+    box-shadow: 0 6px 20px rgba(0, 198, 124, 0.4);
+  }
+
+  .send-button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+  }
+
+  /* Example Messages */
+  .example-messages {
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .example-title {
+    font-size: 16px;
+    font-weight: 600;
+    color: #666;
+    margin-bottom: 16px;
+  }
+
+  .example-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: center;
+  }
+
+  .example-button {
+    background: rgba(0, 198, 124, 0.1);
+    color: #00A066;
+    border: 1px solid rgba(0, 198, 124, 0.2);
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 500;
+  }
+
+  .example-button:hover:not(:disabled) {
+    background: rgba(0, 198, 124, 0.2);
+    border-color: rgba(0, 198, 124, 0.4);
+    transform: translateY(-2px);
+  }
+
+  .example-button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  /* Demo Background Blobs */
+  .demo-blob {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(40px);
+    opacity: 0.3;
+    animation-duration: 20s;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in-out;
+  }
+
+  .demo-blob-1 {
+    width: 300px;
+    height: 250px;
+    background: linear-gradient(135deg, rgba(0, 198, 124, 0.1) 0%, rgba(51, 209, 150, 0.08) 100%);
+    top: 10%;
+    left: -10%;
+    animation-name: demoFloat1;
+  }
+
+  .demo-blob-2 {
+    width: 200px;
+    height: 180px;
+    background: linear-gradient(-45deg, rgba(173, 216, 230, 0.1) 0%, rgba(135, 206, 235, 0.06) 100%);
+    top: 60%;
+    right: -5%;
+    animation-name: demoFloat2;
+    animation-delay: -10s;
+  }
+
+  .demo-blob-3 {
+    width: 150px;
+    height: 130px;
+    background: linear-gradient(45deg, rgba(245, 245, 220, 0.12) 0%, rgba(255, 248, 220, 0.08) 100%);
+    top: 30%;
+    right: 20%;
+    animation-name: demoFloat3;
+    animation-delay: -5s;
+  }
+
+  /* Hero Section Animations */
+  .hero-content-animate {
+    animation: heroFadeIn 1s ease-out forwards;
+  }
+
+  /* Enhanced Organic Background Blobs */
+  .organic-blob {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(60px);
+    opacity: 0.4;
+    animation-duration: 25s;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in-out;
+    pointer-events: none;
+  }
+
+  .blob-1 {
+    width: 400px;
+    height: 350px;
+    background: linear-gradient(135deg, 
+      rgba(0, 198, 124, 0.15) 0%, 
+      rgba(51, 209, 150, 0.12) 50%, 
+      rgba(144, 238, 144, 0.08) 100%);
+    top: 5%;
+    left: -15%;
+    animation-name: morphBlob1;
+  }
+
+  .blob-2 {
+    width: 320px;
+    height: 280px;
+    background: linear-gradient(-45deg, 
+      rgba(173, 216, 230, 0.12) 0%, 
+      rgba(135, 206, 235, 0.08) 50%, 
+      rgba(176, 224, 230, 0.06) 100%);
+    top: 40%;
+    right: -10%;
+    animation-name: morphBlob2;
+    animation-delay: -8s;
+  }
+
+  .blob-3 {
+    width: 250px;
+    height: 220px;
+    background: linear-gradient(45deg, 
+      rgba(245, 245, 220, 0.15) 0%, 
+      rgba(255, 248, 220, 0.12) 50%, 
+      rgba(250, 240, 230, 0.08) 100%);
+    top: 20%;
+    right: 25%;
+    animation-name: morphBlob3;
+    animation-delay: -15s;
+  }
+
+  .blob-4 {
+    width: 300px;
+    height: 260px;
+    background: linear-gradient(-135deg, 
+      rgba(0, 198, 124, 0.08) 0%, 
+      rgba(51, 209, 150, 0.06) 50%, 
+      rgba(144, 238, 144, 0.04) 100%);
+    bottom: 15%;
+    left: 5%;
+    animation-name: morphBlob4;
+    animation-delay: -20s;
+  }
+
+  .blob-5 {
+    width: 180px;
+    height: 160px;
+    background: linear-gradient(90deg, 
+      rgba(173, 216, 230, 0.1) 0%, 
+      rgba(135, 206, 235, 0.06) 100%);
+    top: 70%;
+    right: 40%;
+    animation-name: morphBlob5;
+    animation-delay: -12s;
+  }
+
+  .blob-6 {
+    width: 220px;
+    height: 200px;
+    background: linear-gradient(-90deg, 
+      rgba(245, 245, 220, 0.12) 0%, 
+      rgba(255, 248, 220, 0.08) 100%);
+    top: 10%;
+    left: 30%;
+    animation-name: morphBlob6;
+    animation-delay: -25s;
+  }
+
+  /* 3D iPhone Styles */
+  .phone-container {
+    perspective: 1000px;
+    transform-style: preserve-3d;
+    cursor: pointer;
+  }
+
+  .iphone-frame {
+    position: relative;
+    width: 280px;
+    height: 570px;
+    transform: rotateY(-5deg) rotateX(5deg);
+    transition: transform 0.3s ease;
+    animation: phoneFloat 6s ease-in-out infinite;
+    z-index: 20;
+  }
+
+  .iphone-frame:hover {
+    transform: rotateY(-2deg) rotateX(2deg) scale(1.02);
+    animation-play-state: paused;
+  }
+
+  .iphone-body {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(145deg, #1a1a1a, #2d2d2d);
+    border-radius: 50px;
+    padding: 8px;
+    box-shadow: 
+      0 25px 50px rgba(0, 0, 0, 0.3),
+      0 10px 20px rgba(0, 0, 0, 0.2),
+      inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    position: relative;
+  }
+
+  .iphone-screen {
+    width: 100%;
+    height: 100%;
+    background: #000;
+    border-radius: 42px;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .dynamic-island {
+    position: absolute;
+    top: 12px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 120px;
+    height: 30px;
+    background: #000;
+    border-radius: 20px;
+    z-index: 10;
+  }
+
+  /* Side Buttons */
+  .side-button {
+    position: absolute;
+    background: linear-gradient(145deg, #2d2d2d, #1a1a1a);
+    border-radius: 3px;
+  }
+
+  .volume-up {
+    width: 4px;
+    height: 30px;
+    left: -2px;
+    top: 120px;
+  }
+
+  .volume-down {
+    width: 4px;
+    height: 30px;
+    left: -2px;
+    top: 160px;
+  }
+
+  .power {
+    width: 4px;
+    height: 60px;
+    right: -2px;
+    top: 140px;
+  }
+
+  /* WhatsApp Interface */
+  .whatsapp-interface {
+    width: 100%;
+    height: 100%;
+    background: #ECE5DD;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .whatsapp-header {
+    background: #075E54;
+    padding: 15px 16px 12px;
+    padding-top: 50px;
+  }
+
+  .contact-info {
+    display: flex;
+    align-items: center;
+  }
+
+  .avatar {
+    width: 40px;
+    height: 40px;
+    background: rgba(0, 198, 124, 0.3);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 12px;
+  }
+
+  .contact-details h3 {
+    color: white;
+    font-size: 16px;
+    font-weight: 500;
+    margin: 0;
+  }
+
+  .status {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 12px;
+  }
+
+  .chat-area {
+    flex: 1;
+    padding: 16px;
+    overflow-y: auto;
+  }
+
+  .messages-container {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .message {
+    display: flex;
+    margin-bottom: 8px;
+  }
+
+  .user-message {
+    justify-content: flex-end;
+  }
+
+  .bot-message {
+    justify-content: flex-start;
+  }
+
+  .message-bubble {
+    max-width: 80%;
+    padding: 8px 12px;
+    border-radius: 12px;
+    position: relative;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  }
+
+  .user-bubble {
+    background: #DCF8C6;
+    border-bottom-right-radius: 4px;
+  }
+
+  .bot-bubble {
+    background: white;
+    border-bottom-left-radius: 4px;
+  }
+
+  .message-bubble p {
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.4;
+    color: #333;
+  }
+
+  .message-time {
+    font-size: 11px;
+    color: #666;
+    display: block;
+    text-align: right;
+    margin-top: 4px;
+  }
+
+  /* Typing Indicator */
+  .typing-indicator {
+    background: white;
+    padding: 12px 16px;
+    border-radius: 12px;
+    border-bottom-left-radius: 4px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  }
+
+  .typing-dots {
+    display: flex;
+    gap: 4px;
+  }
+
+  .typing-dots span {
+    width: 6px;
+    height: 6px;
+    background: #999;
+    border-radius: 50%;
+    animation: typingDots 1.4s infinite ease-in-out;
+  }
+
+  .typing-dots span:nth-child(1) { animation-delay: -0.32s; }
+  .typing-dots span:nth-child(2) { animation-delay: -0.16s; }
+
+  /* Enhanced Animation Keyframes */
+  @keyframes buttonPulse {
+    0%, 100% {
+      box-shadow: 0 0 0 0 rgba(0, 198, 124, 0.4);
+    }
+    50% {
+      box-shadow: 0 0 0 20px rgba(0, 198, 124, 0);
+    }
+  }
+
+  @keyframes tooltipFadeIn {
+    from {
+      opacity: 0;
+      transform: translateX(-50%) translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+  }
+
+  /* Demo Animation Keyframes */
+  @keyframes demoFloat1 {
+    0%, 100% {
+      transform: translate(0, 0) rotate(0deg);
+    }
+    33% {
+      transform: translate(30px, -20px) rotate(120deg);
+    }
+    66% {
+      transform: translate(-20px, 30px) rotate(240deg);
+    }
+  }
+
+  @keyframes demoFloat2 {
+    0%, 100% {
+      transform: translate(0, 0) rotate(0deg);
+    }
+    50% {
+      transform: translate(-40px, -30px) rotate(180deg);
+    }
+  }
+
+  @keyframes demoFloat3 {
+    0%, 100% {
+      transform: translate(0, 0) rotate(0deg);
+    }
+    25% {
+      transform: translate(20px, -30px) rotate(90deg);
+    }
+    50% {
+      transform: translate(-30px, 20px) rotate(180deg);
+    }
+    75% {
+      transform: translate(30px, 30px) rotate(270deg);
+    }
+  }
+
+  /* Enhanced Blob Animations */
+  @keyframes morphBlob1 {
+    0%, 100% {
+      border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+      transform: translate(0, 0) scale(1) rotate(0deg);
+    }
+    25% {
+      border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%;
+      transform: translate(30px, -30px) scale(1.1) rotate(90deg);
+    }
+    50% {
+      border-radius: 70% 30% 50% 50% / 30% 30% 70% 70%;
+      transform: translate(-20px, 20px) scale(0.9) rotate(180deg);
+    }
+    75% {
+      border-radius: 50% 70% 40% 60% / 70% 50% 60% 30%;
+      transform: translate(40px, 10px) scale(1.05) rotate(270deg);
+    }
+  }
+
+  @keyframes morphBlob2 {
+    0%, 100% {
+      border-radius: 40% 60% 70% 30% / 40% 40% 60% 50%;
+      transform: translate(0, 0) scale(1) rotate(0deg);
+    }
+    33% {
+      border-radius: 70% 30% 50% 50% / 30% 30% 70% 70%;
+      transform: translate(-40px, 30px) scale(1.2) rotate(120deg);
+    }
+    66% {
+      border-radius: 30% 70% 60% 40% / 60% 70% 30% 40%;
+      transform: translate(20px, -40px) scale(0.8) rotate(240deg);
+    }
+  }
+
+  @keyframes morphBlob3 {
+    0%, 100% {
+      border-radius: 50% 50% 30% 70% / 60% 40% 60% 40%;
+      transform: translate(0, 0) scale(1) rotate(0deg);
+    }
+    20% {
+      border-radius: 30% 70% 70% 30% / 50% 50% 30% 70%;
+      transform: translate(20px, -40px) scale(0.8) rotate(72deg);
+    }
+    40% {
+      border-radius: 70% 30% 40% 60% / 30% 70% 70% 30%;
+      transform: translate(-30px, 20px) scale(1.1) rotate(144deg);
+    }
+    60% {
+      border-radius: 60% 40% 50% 50% / 40% 60% 50% 50%;
+      transform: translate(35px, 15px) scale(0.9) rotate(216deg);
+    }
+    80% {
+      border-radius: 40% 60% 60% 40% / 70% 30% 40% 60%;
+      transform: translate(-15px, -25px) scale(1.05) rotate(288deg);
+    }
+  }
+
+  @keyframes morphBlob4 {
+    0%, 100% {
+      border-radius: 30% 70% 40% 60% / 50% 50% 60% 40%;
+      transform: translate(0, 0) scale(1) rotate(0deg);
+    }
+    50% {
+      border-radius: 60% 40% 60% 40% / 40% 60% 40% 60%;
+      transform: translate(25px, -25px) scale(0.9) rotate(180deg);
+    }
+  }
+
+  @keyframes morphBlob5 {
+    0%, 100% {
+      border-radius: 70% 30% 60% 40% / 30% 70% 40% 60%;
+      transform: translate(0, 0) scale(1) rotate(0deg);
+    }
+    33% {
+      border-radius: 40% 60% 30% 70% / 60% 40% 70% 30%;
+      transform: translate(-25px, 35px) scale(1.15) rotate(120deg);
+    }
+    66% {
+      border-radius: 60% 40% 70% 30% / 50% 50% 30% 70%;
+      transform: translate(30px, -20px) scale(0.85) rotate(240deg);
+    }
+  }
+
+  @keyframes morphBlob6 {
+    0%, 100% {
+      border-radius: 50% 50% 50% 50% / 60% 40% 60% 40%;
+      transform: translate(0, 0) scale(1) rotate(0deg);
+    }
+    25% {
+      border-radius: 30% 70% 40% 60% / 70% 30% 50% 50%;
+      transform: translate(20px, 30px) scale(0.9) rotate(90deg);
+    }
+    50% {
+      border-radius: 70% 30% 60% 40% / 40% 60% 30% 70%;
+      transform: translate(-30px, -20px) scale(1.1) rotate(180deg);
+    }
+    75% {
+      border-radius: 40% 60% 50% 50% / 50% 50% 60% 40%;
+      transform: translate(15px, -35px) scale(0.95) rotate(270deg);
+    }
+  }
+
+  @keyframes heroFadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes phoneFloat {
+    0%, 100% {
+      transform: rotateY(-5deg) rotateX(5deg) translateY(0px);
+    }
+    50% {
+      transform: rotateY(-5deg) rotateX(5deg) translateY(-10px);
+    }
+  }
+
+  @keyframes typingDots {
+    0%, 80%, 100% {
+      transform: scale(0);
+      opacity: 0.5;
+    }
+    40% {
+      transform: scale(1);
+      opacity: 1;
+    }
+  }
+
+  .message-animate {
+    animation: messageSlideIn 0.5s ease-out forwards;
+  }
+
+  @keyframes messageSlideIn {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Additional Micro-animations */
+  @keyframes slideInLeft {
+    from {
+      opacity: 0;
+      transform: translateX(-30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .animate-slideInLeft {
+    animation: slideInLeft 0.6s ease-out forwards;
+  }
+
+  .animate-fadeIn {
+    animation: fadeIn 0.8s ease-out forwards;
+  }
+
+  @keyframes pulse {
+    0% {
+      transform: scale(1);
+      box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7);
+    }
+    
+    70% {
+      transform: scale(1.05);
+      box-shadow: 0 0 0 10px rgba(37, 211, 102, 0);
+    }
+    
+    100% {
+      transform: scale(1);
+      box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+    }
+  }
+
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0) rotate(0deg);
+    }
+    50% {
+      transform: translateY(-10px) rotate(5deg);
+    }
+  }
+
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+}

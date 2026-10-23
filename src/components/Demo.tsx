@@ -105,15 +105,15 @@ Há mais alguma coisa que posso fazer por você?`;
 
 Posso ajudar com mais alguma coisa?`;
     } else {
-      return `Entendi sua solicitação! Vou processar isso para você.
+      return `Pronto! Anotei sua mensagem.
 
-Como sou o Aivy, uma IA especializada em agendamentos, posso ajudar você a:
-• Marcar reuniões e compromissos
-• Criar lembretes personalizados
-• Gerenciar sua agenda
-• Cancelar ou reagendar eventos
+Como seu assistente de agenda no WhatsApp, posso te ajudar a:
+• Marcar reuniões e atendimentos
+• Enviar lembretes automáticos
+• Consultar e organizar sua agenda
+• Cancelar ou reagendar compromissos
 
-O que gostaria de fazer?`;
+Qual compromisso você gostaria de marcar agora?`;
     }
   };
 
@@ -138,10 +138,10 @@ O que gostaria de fazer?`;
   };
 
   const exampleMessages = [
-    "Marca pra mim uma reunião dia 10 às 14h",
-    "Lembra de ligar para o cliente às 15h",
-    "Cancela minha reunião de amanhã",
-    "Mostra minha agenda da semana"
+    "Agenda o João na terça às 10h",
+    "Me lembra da consulta amanhã às 8h",
+    "Cancela a reunião de sexta",
+    "Quais são meus compromissos dessa semana?"
   ];
 
   const handleExampleClick = (example: string) => {
@@ -159,12 +159,15 @@ O que gostaria de fazer?`;
       </div>
 
       <div className="container relative z-10">
-        <div className="text-center max-w-3xl mx-auto mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4 bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent">
-            Experimente o Aivy agora mesmo!
+        <div className="text-center max-w-2xl mx-auto mb-12">
+          <span className="inline-block text-xs font-bold uppercase tracking-widest text-primary/80 bg-primary/10 px-4 py-1.5 rounded-full mb-4">
+            Demonstração ao vivo
+          </span>
+          <h2 className="text-3xl md:text-4xl font-extrabold text-gray-900 tracking-tight mb-4">
+            Experimente como é simples agendar
           </h2>
-          <p className="text-lg text-gray-700 mb-8">
-            Digite uma tarefa no campo abaixo e veja como nossa IA responde de forma natural e inteligente.
+          <p className="text-lg text-gray-500 font-normal">
+            Digite uma tarefa ou compromisso abaixo. O Aivy responde como faria pelo WhatsApp de verdade.
           </p>
         </div>
         
@@ -193,8 +196,8 @@ O que gostaria de fazer?`;
                 {messages.length === 0 && (
                   <div className="welcome-message">
                     <div className="welcome-bubble">
-                      <p>👋 Olá! Sou seu assistente pessoal do Aivy.</p>
-                      <p>Digite qualquer tarefa ou compromisso que precisa organizar e eu te ajudo!</p>
+                      <p>👋 Olá! Sou o Aivy, seu assistente de agendamentos.</p>
+                      <p>Manda o compromisso que quer organizar e já resolvo pra você!</p>
                       <span className="message-time">{getCurrentTime()}</span>
                     </div>
                   </div>
@@ -263,7 +266,7 @@ O que gostaria de fazer?`;
 
           {/* Example Messages */}
           <div className="example-messages">
-            <p className="example-title">💡 Experimente estes exemplos:</p>
+            <p className="example-title">✨ Tente esses exemplos:</p>
             <div className="example-buttons">
               {exampleMessages.map((example, index) => (
                 <button

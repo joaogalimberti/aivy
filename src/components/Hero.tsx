@@ -1,28 +1,20 @@
 import React, { useEffect, useState } from 'react';
 import Button from './common/Button';
-import { Check, Calendar } from 'lucide-react';
+import { Check, Calendar, ArrowRight, ShieldCheck, Zap, Users, MessageSquare } from 'lucide-react';
 
 const Hero: React.FC = () => {
   const [visibleMessages, setVisibleMessages] = useState(0);
   const [showTyping, setShowTyping] = useState(false);
-  const [currentHeadlineIndex, setCurrentHeadlineIndex] = useState(0);
   const [showTooltip, setShowTooltip] = useState(false);
-
-  const headlines = [
-    "Agende seus compromissos no WhatsApp.",
-    "Nunca mais esqueça uma reunião.",
-    "Receba lembretes automáticos.",
-    "Organize sua agenda com IA."
-  ];
 
   // Chat animation sequence
   useEffect(() => {
     const sequence = [
-      { delay: 1000, action: () => setVisibleMessages(1) },
-      { delay: 2500, action: () => setShowTyping(true) },
-      { delay: 3500, action: () => { setShowTyping(false); setVisibleMessages(2); } },
-      { delay: 5000, action: () => setVisibleMessages(3) },
-      { delay: 6500, action: () => setVisibleMessages(4) }
+      { delay: 800, action: () => setVisibleMessages(1) },
+      { delay: 2000, action: () => setShowTyping(true) },
+      { delay: 3200, action: () => { setShowTyping(false); setVisibleMessages(2); } },
+      { delay: 4600, action: () => setVisibleMessages(3) },
+      { delay: 6000, action: () => setVisibleMessages(4) }
     ];
 
     const timers = sequence.map(({ delay, action }) => 
@@ -30,15 +22,6 @@ const Hero: React.FC = () => {
     );
 
     return () => timers.forEach(clearTimeout);
-  }, []);
-
-  // Dynamic headline rotation
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentHeadlineIndex((prev) => (prev + 1) % headlines.length);
-    }, 3000);
-
-    return () => clearInterval(interval);
   }, []);
 
   const handleScrollToDemo = () => {
@@ -54,11 +37,11 @@ const Hero: React.FC = () => {
     
     setTimeout(() => {
       const sequence = [
-        { delay: 500, action: () => setVisibleMessages(1) },
-        { delay: 1500, action: () => setShowTyping(true) },
-        { delay: 2500, action: () => { setShowTyping(false); setVisibleMessages(2); } },
-        { delay: 4000, action: () => setVisibleMessages(3) },
-        { delay: 5500, action: () => setVisibleMessages(4) }
+        { delay: 400, action: () => setVisibleMessages(1) },
+        { delay: 1400, action: () => setShowTyping(true) },
+        { delay: 2400, action: () => { setShowTyping(false); setVisibleMessages(2); } },
+        { delay: 3800, action: () => setVisibleMessages(3) },
+        { delay: 5200, action: () => setVisibleMessages(4) }
       ];
 
       sequence.forEach(({ delay, action }) => {
@@ -68,103 +51,122 @@ const Hero: React.FC = () => {
   };
 
   return (
-    <section id="hero" className="pt-28 pb-16 md:pt-36 md:pb-24 overflow-hidden relative">
-      {/* Enhanced Organic background shapes */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="organic-blob blob-1"></div>
-        <div className="organic-blob blob-2"></div>
-        <div className="organic-blob blob-3"></div>
-        <div className="organic-blob blob-4"></div>
-        <div className="organic-blob blob-5"></div>
-        <div className="organic-blob blob-6"></div>
-      </div>
+    <section id="hero" className="pt-28 pb-16 md:pt-36 md:pb-24 overflow-hidden relative bg-gradient-to-b from-emerald-50/40 via-white to-white">
+      {/* Subtle modern background decorations */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-96 bg-gradient-to-tr from-primary/10 via-emerald-100/30 to-transparent blur-3xl -z-10 pointer-events-none" />
 
       <div className="container relative z-10">
-        <div className="flex flex-col lg:flex-row items-center gap-12">
+        <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-8">
           {/* Left Content */}
           <div className="lg:w-1/2 text-center lg:text-left">
-            <div className="hero-content-animate">
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent min-h-[200px] md:min-h-[240px] lg:min-h-[280px]">
-                <span className="block mb-2">Seu novo assistente</span>
-                <span className="block mb-2">pessoal no WhatsApp.</span>
-                <div className="dynamic-headline-container">
-                  {headlines.map((headline, index) => (
-                    <span
-                      key={index}
-                      className={`dynamic-headline ${
-                        index === currentHeadlineIndex ? 'active' : ''
-                      }`}
-                    >
-                      {headline}
-                    </span>
-                  ))}
-                </div>
+            <div className="hero-content-animate max-w-xl mx-auto lg:mx-0">
+              
+              {/* Badge */}
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-50 border border-emerald-200/80 text-emerald-800 text-xs sm:text-sm font-semibold mb-6 shadow-sm">
+                <span className="flex h-2 w-2 rounded-full bg-primary animate-pulse" />
+                <span>O assistente de agendamentos no WhatsApp</span>
+              </div>
+              
+              {/* Main Headline - Fixed, No overlap */}
+              <h1 className="text-4xl sm:text-5xl lg:text-[54px] font-extrabold text-gray-900 tracking-tight leading-[1.12] mb-6">
+                Sua agenda organizada no WhatsApp.{' '}
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-emerald-500 to-teal-600 block mt-1">
+                  Sem atrito. Sem faltas.
+                </span>
               </h1>
               
-              <p className="text-lg md:text-xl text-gray-600 mb-8 leading-relaxed animate-fadeIn">
-                Transforme seu WhatsApp em uma ferramenta de produtividade com IA que entende sua linguagem natural.
+              {/* Subtitle */}
+              <p className="text-lg md:text-xl text-gray-600 mb-8 leading-relaxed font-normal">
+                Gerencie compromissos, envie lembretes automáticos anti-no-show e sincronize com seu calendário sem exigir que você ou seus clientes instalem nada.
               </p>
               
-              <div className="space-y-4 mb-10">
-                <div className="flex items-center justify-center lg:justify-start animate-slideInLeft">
-                  <div className="bg-primary/10 rounded-full p-1 mr-3">
-                    <Check className="text-primary w-5 h-5" />
+              {/* Feature Pills */}
+              <div className="space-y-3.5 mb-8 text-left inline-block">
+                <div className="flex items-center gap-3">
+                  <div className="bg-emerald-100 text-primary-dark rounded-full p-1 flex-shrink-0">
+                    <Check className="w-4 h-4 text-emerald-700 stroke-[2.5]" />
                   </div>
-                  <p className="text-gray-700 font-medium">Agendamentos ilimitados (Plano PRO)</p>
+                  <span className="text-gray-700 font-medium text-sm sm:text-base">
+                    Lembretes automáticos 24h e 1h antes (redução drástica de faltas)
+                  </span>
                 </div>
-                <div className="flex items-center justify-center lg:justify-start animate-slideInLeft" style={{ animationDelay: '0.2s' }}>
-                  <div className="bg-primary/10 rounded-full p-1 mr-3">
-                    <Check className="text-primary w-5 h-5" />
+                <div className="flex items-center gap-3">
+                  <div className="bg-emerald-100 text-primary-dark rounded-full p-1 flex-shrink-0">
+                    <Check className="w-4 h-4 text-emerald-700 stroke-[2.5]" />
                   </div>
-                  <p className="text-gray-700 font-medium">Lembretes automáticos inteligentes</p>
+                  <span className="text-gray-700 font-medium text-sm sm:text-base">
+                    Integração com Google Calendar e Outlook em tempo real
+                  </span>
                 </div>
-                <div className="flex items-center justify-center lg:justify-start animate-slideInLeft" style={{ animationDelay: '0.4s' }}>
-                  <div className="bg-primary/10 rounded-full p-1 mr-3">
-                    <Check className="text-primary w-5 h-5" />
+                <div className="flex items-center gap-3">
+                  <div className="bg-emerald-100 text-primary-dark rounded-full p-1 flex-shrink-0">
+                    <Check className="w-4 h-4 text-emerald-700 stroke-[2.5]" />
                   </div>
-                  <p className="text-gray-700 font-medium">IA que entende sua linguagem</p>
+                  <span className="text-gray-700 font-medium text-sm sm:text-base">
+                    Comandos em linguagem natural e por áudio no WhatsApp
+                  </span>
                 </div>
               </div>
               
-              <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+              {/* CTA Buttons */}
+              <div className="flex flex-col sm:flex-row gap-3.5 justify-center lg:justify-start">
                 <Button
                   variant="primary"
-                  href="https://wa.me/?text=Olá!%20Gostaria%20de%20saber%20mais%20sobre%20o%20Aivy"
-                  className="text-base md:text-lg px-8 py-4 shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300 pulse-button"
+                  href="https://wa.me/?text=Olá!%20Quero%20testar%20o%20Aivy%20no%20meu%20WhatsApp"
+                  className="text-base font-semibold px-8 py-3.5 shadow-lg shadow-primary/25 hover:shadow-xl hover:shadow-primary/30 transform hover:-translate-y-0.5 transition-all flex items-center justify-center gap-2"
                 >
-                  Começar Agora
+                  <MessageSquare className="w-5 h-5 fill-white" />
+                  <span>Testar Grátis no WhatsApp</span>
+                  <ArrowRight className="w-4 h-4" />
                 </Button>
                 <Button
                   variant="secondary"
                   onClick={handleScrollToDemo}
-                  className="text-base md:text-lg px-8 py-4 hover:shadow-lg transform hover:-translate-y-1 transition-all duration-300 hover-lift"
+                  className="text-base font-semibold px-6 py-3.5 border-gray-200 text-gray-700 hover:bg-gray-50 transform hover:-translate-y-0.5 transition-all"
                 >
-                  Ver como funciona
+                  Ver Demonstração
                 </Button>
+              </div>
+
+              {/* Trust Badges */}
+              <div className="mt-8 pt-6 border-t border-gray-100 flex flex-wrap items-center justify-center lg:justify-start gap-6 text-xs text-gray-500 font-medium">
+                <div className="flex items-center gap-1.5">
+                  <Zap className="w-4 h-4 text-emerald-600" />
+                  <span>Configuração em 1 minuto</span>
+                </div>
+                <div className="flex items-center gap-1.5">
+                  <ShieldCheck className="w-4 h-4 text-emerald-600" />
+                  <span>Sem necessidade de cartão</span>
+                </div>
+                <div className="flex items-center gap-1.5">
+                  <Users className="w-4 h-4 text-emerald-600" />
+                  <span>+15.000 agendamentos</span>
+                </div>
               </div>
             </div>
           </div>
           
-          {/* Right Content - Enhanced 3D iPhone with Tooltip */}
+          {/* Right Content - 3D iPhone with Interactive Preview */}
           <div className="lg:w-1/2 flex justify-center items-center relative">
             <div 
-              className="phone-container relative"
+              className="phone-container relative cursor-pointer"
               onMouseEnter={() => setShowTooltip(true)}
               onMouseLeave={() => setShowTooltip(false)}
               onClick={restartChatAnimation}
+              title="Clique para reiniciar a animação"
             >
               {/* Tooltip */}
               {showTooltip && (
                 <div className="tooltip">
                   <div className="tooltip-content">
-                    Veja como é fácil agendar
+                    Clique para reiniciar a conversa
                   </div>
                   <div className="tooltip-arrow"></div>
                 </div>
               )}
 
               {/* 3D iPhone Frame */}
-              <div className="iphone-frame">
+              <div className="iphone-frame shadow-2xl">
                 {/* iPhone body */}
                 <div className="iphone-body">
                   {/* Screen */}
@@ -178,24 +180,24 @@ const Hero: React.FC = () => {
                       <div className="whatsapp-header">
                         <div className="contact-info">
                           <div className="avatar">
-                            <Calendar className="w-6 h-6" />
+                            <Calendar className="w-5 h-5 text-emerald-700" />
                           </div>
                           <div className="contact-details">
-                            <h3>Aivy</h3>
-                            <span className="status">online</span>
+                            <h3>Aivy Assistente</h3>
+                            <span className="status">● online agora</span>
                           </div>
                         </div>
                       </div>
                       
                       {/* Chat Area */}
                       <div className="chat-area">
-                        <div className="messages-container">
+                        <div className="messages-container text-xs sm:text-sm">
                           {/* User Message */}
                           {visibleMessages >= 1 && (
                             <div className="message user-message message-animate">
                               <div className="message-bubble user-bubble">
-                                <p>Marca pra mim uma reunião dia 10 às 14h</p>
-                                <span className="message-time">10:25 ✓✓</span>
+                                <p>Aivy, marca uma reunião com a Dra. Mariana na quinta às 15h</p>
+                                <span className="message-time">14:32 ✓✓</span>
                               </div>
                             </div>
                           )}
@@ -217,8 +219,13 @@ const Hero: React.FC = () => {
                           {visibleMessages >= 2 && (
                             <div className="message bot-message message-animate">
                               <div className="message-bubble bot-bubble">
-                                <p>Perfeito! Agendei sua reunião para 10/06 às 14h.</p>
-                                <span className="message-time">10:25</span>
+                                <p className="font-semibold text-emerald-800 mb-1">Agendado com sucesso! ✅</p>
+                                <div className="bg-emerald-50/80 rounded-lg p-2.5 my-1.5 border border-emerald-200/60 text-[11px] leading-relaxed">
+                                  <p className="font-bold text-gray-800">📋 Reunião com Dra. Mariana</p>
+                                  <p className="text-gray-600">🗓️ Quinta-feira, 15:00 - 16:00</p>
+                                  <p className="text-gray-600">🔄 Sincronizado no Google Calendar</p>
+                                </div>
+                                <span className="message-time">14:32</span>
                               </div>
                             </div>
                           )}
@@ -227,10 +234,10 @@ const Hero: React.FC = () => {
                           {visibleMessages >= 3 && (
                             <div className="message bot-message message-animate">
                               <div className="message-bubble bot-bubble">
-                                <p>Você receberá lembretes automaticamente:</p>
-                                <p>• 1 dia antes</p>
-                                <p>• 1 hora antes</p>
-                                <span className="message-time">10:25</span>
+                                <p>Configurei os lembretes automáticos:</p>
+                                <p className="text-gray-600 mt-1">• 24h antes para você e Dra. Mariana</p>
+                                <p className="text-gray-600">• 1h antes com confirmação de presença</p>
+                                <span className="message-time">14:32</span>
                               </div>
                             </div>
                           )}
@@ -239,8 +246,8 @@ const Hero: React.FC = () => {
                           {visibleMessages >= 4 && (
                             <div className="message bot-message message-animate">
                               <div className="message-bubble bot-bubble">
-                                <p>Precisa de mais alguma coisa?</p>
-                                <span className="message-time">10:26</span>
+                                <p>Deseja adicionar o link do Google Meet ou alguma anotação?</p>
+                                <span className="message-time">14:33</span>
                               </div>
                             </div>
                           )}
@@ -262,5 +269,4 @@ const Hero: React.FC = () => {
     </section>
   );
 };
-
-export default Hero;
+export default Hero;
